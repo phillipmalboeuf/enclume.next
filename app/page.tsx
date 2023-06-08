@@ -1,95 +1,47 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { OnScroll } from '@/components/animations'
+import { LE, LPE } from '@/components/entry'
+import { Icon } from '@/components/icon'
+import { PageTransition } from '@/components/page_transition'
+import { ContentService } from '@/services/content'
+import Link from 'next/link'
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+export default async function Home() {
+  const homepage = await ContentService.homepage()
+  return <>
+    <PageTransition />
+    <main role='main'>
+      <div className='padded padded--big_top relative nooverflow'>
+        <Icon i='anvil_homepage' />
+
+        <h2
+          // ref={element => this.parallax.push({ e: element, l: 2 })}
+          className='max_width max_width--tight'>
+          <OnScroll><LE c={homepage} k='description' /></OnScroll>
+        </h2>
+        <div className='big_bottom' />
+
+        <div className='grid grid--thick_guttered grid--spaced_around grid--middle'>
+          {homepage.fields.projects.map((project: any, index: number)=> <div key={project.fields.url}
+            // ref={element => this.parallax.push({ e: element, l: 2 - (index % 3 === 0 ? 0.5 : index % 3 === 1 ? 1 : 0)  })}
+            className={`col col--${homepage.fields.projectsGridSizes[index]}of12 col--tablet_portrait--12of12`}>
+            <Link href={`/projets/${project.fields.url}`}>
+              <OnScroll>
+                <div className='small_bottom'><LPE c={project} k='hero' /></div>
+                <h4>
+                  <LE c={project} k='title' />
+                </h4>
+              </OnScroll>
+            </Link>
+
+            <div className='normal_bottom hide_on_tablet_portrait' />
+          </div>)}
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        
       </div>
     </main>
-  )
+
+    <div className='padded padded--thick overflow_top text_center teal_back' style={{ position: 'relative', zIndex: 1 }}>
+      <OnScroll><Link href='/projets' className='big' style={{ zIndex: 1 }}><LE c={homepage} k='cta' /></Link></OnScroll>
+    </div>
+  </>
 }
