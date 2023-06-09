@@ -3,7 +3,21 @@ import { LE, LPE, LRE } from '@/components/entry'
 import { Icon } from '@/components/icon'
 import { PageTransition } from '@/components/page_transition'
 import { ContentService } from '@/services/content'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
+import { Metadata } from 'next'
 import Link from 'next/link'
+
+export async function generateMetadata(
+  params,
+  searchParams
+): Promise<Metadata> {
+  const contact = await ContentService.contact()
+
+  return {
+    title: 'Contact',
+    description: documentToPlainTextString(contact.fields.information)
+  }
+}
 
 export default async function Contact() {
   const contact = await ContentService.contact()

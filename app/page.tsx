@@ -5,6 +5,18 @@ import { PageTransition } from '@/components/page_transition'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
 
+import { Metadata, ResolvingMetadata } from 'next'
+
+export async function generateMetadata(
+): Promise<Metadata> {
+  const homepage = await ContentService.homepage()
+
+  return {
+    title: homepage.fields.title,
+    description: homepage.fields.description
+  }
+}
+
 export default async function Home() {
   const homepage = await ContentService.homepage()
   return <>

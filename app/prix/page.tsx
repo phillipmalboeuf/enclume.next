@@ -7,7 +7,23 @@ import { Picture } from '@/components/picture'
 import { Slider } from '@/components/slider'
 import { ContentService } from '@/services/content'
 import { Asset } from 'contentful'
+import { Metadata } from 'next'
 import Link from 'next/link'
+
+export async function generateMetadata(
+  params,
+  searchParams
+): Promise<Metadata> {
+  const [awards_page] = await Promise.all([
+    ContentService.awardsPage(),
+    // ContentService.awards(),
+  ])
+
+  return {
+    title: 'Le prix Enclume',
+    description: awards_page.fields.introduction
+  }
+}
 
 export default async function Awards() {
   const [awards_page, awards] = await Promise.all([

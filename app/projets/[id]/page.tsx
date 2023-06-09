@@ -6,6 +6,28 @@ import { Picture } from '@/components/picture'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
 
+import { Metadata, ResolvingMetadata } from 'next'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
+
+export async function generateMetadata(
+  params,
+  searchParams
+): Promise<Metadata> {
+  const project = await ContentService.project({ 'fields.url': params.id })
+
+  return {
+    title: project.fields.title,
+    description: documentToPlainTextString(project.fields.description),
+    openGraph: {
+      images: [
+        {
+          url: project.fields.hero && `https:${project.fields.hero.fields.file.url}`
+        }
+      ]
+    }
+  }
+}
+
 export default async function Projet({
   params,
   searchParams

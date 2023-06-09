@@ -3,7 +3,20 @@ import { LE, LPE, LRE } from '@/components/entry'
 import { Icon } from '@/components/icon'
 import { PageTransition } from '@/components/page_transition'
 import { ContentService } from '@/services/content'
+import { Metadata } from 'next'
 import Link from 'next/link'
+
+export async function generateMetadata(
+  params,
+  searchParams
+): Promise<Metadata> {
+  const about = await ContentService.aboutPage()
+
+  return {
+    title: 'À propos',
+    description: about.fields.intro
+  }
+}
 
 export default async function About() {
   const about = await ContentService.aboutPage()

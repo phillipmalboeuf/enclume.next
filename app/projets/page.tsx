@@ -4,6 +4,26 @@ import { PageTransition } from '@/components/page_transition'
 import { ContentService } from '@/services/content'
 import Link from 'next/link'
 
+import { Metadata, ResolvingMetadata } from 'next'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
+
+export async function generateMetadata(
+  searchParams
+): Promise<Metadata> {
+
+  const [about] = await Promise.all([
+    ContentService.aboutPage(),
+    // ContentService.projects()
+  ])
+
+  let current_category = about.fields.categories.find((category: any)=> category.fields.key === searchParams.category)
+
+  return {
+    title: current_category ? current_category.fields.title : 'Projets',
+    description: current_category && current_category.fields.description
+  }
+}
+
 export default async function Projets({
   searchParams
 }) {
