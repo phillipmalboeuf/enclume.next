@@ -31,18 +31,18 @@ export default async function Projet({
         </OnScroll>
 
         <h1
-          // ref={element => this.parallax.push({ e: element, l: 1.5 })}
+          data-parallax="1.5"
         ><OnScroll><LE c={project} k={'title'} /></OnScroll></h1>
 
         <div
-          // ref={element => this.parallax.push({ e: element, l: 1.5 })}
+          data-parallax="1.5"
           className='medium_bottom max_width'>
           {project.fields.subTitle && <OnScroll><p className='slight'><LE c={project} k='subTitle' /></p></OnScroll>}
           <OnScroll><LRE c={project} k={'description'} /></OnScroll>
         </div>
 
         <div
-          // ref={element => this.parallax.push({ e: element, l: 2 })}
+          data-parallax="2"
           className='grid grid--thick_guttered grid--spaced_around grid--middle'>
           {project.fields.gallery.map((photo: any, index: number)=> <OnScroll key={photo.fields.file.url} className={`col col--${project.fields.galleryGridSizes && project.fields.galleryGridSizes[index]}of12 col--tablet_portrait--12of12`}>
             <figure>

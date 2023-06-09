@@ -14,7 +14,7 @@ export default async function Home() {
         <Icon i='anvil_homepage' />
 
         <h2
-          // ref={element => this.parallax.push({ e: element, l: 2 })}
+          data-parallax="2"
           className='max_width max_width--tight'>
           <OnScroll><LE c={homepage} k='description' /></OnScroll>
         </h2>
@@ -22,7 +22,7 @@ export default async function Home() {
 
         <div className='grid grid--thick_guttered grid--spaced_around grid--middle'>
           {homepage.fields.projects.map((project: any, index: number)=> <div key={project.fields.url}
-            // ref={element => this.parallax.push({ e: element, l: 2 - (index % 3 === 0 ? 0.5 : index % 3 === 1 ? 1 : 0)  })}
+            data-parallax={2 - (index % 3 === 0 ? 0.5 : index % 3 === 1 ? 1 : 0)}
             className={`col col--${homepage.fields.projectsGridSizes[index]}of12 col--tablet_portrait--12of12`}>
             <Link href={`/projets/${project.fields.url}`}>
               <OnScroll>

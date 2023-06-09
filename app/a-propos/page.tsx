@@ -21,12 +21,12 @@ export default async function About() {
 
         <OnScroll className='grid grid--guttered'>
           <div className='col col--3of12 col--tablet_landscape--4of12 col--tablet_portrait--6of12 col--phone--12of12'
-            // ref={element => this.parallax.push({ e: element, l: 2 })}
+            data-parallax="2"
           >
             <LRE c={about} k='introBodyLeft' />
           </div>
           <div className='col col--3of12 col--tablet_landscape--4of12 col--tablet_portrait--6of12 col--phone--12of12'
-            // ref={element => this.parallax.push({ e: element, l: 1 })}
+            data-parallax="1"
           >
             <LRE c={about} k='introBodyRight' />
           </div>
@@ -36,12 +36,12 @@ export default async function About() {
 
         <OnScroll className='grid grid--guttered'>
           <div className='col col--12of12'
-            // ref={element => this.parallax.push({ e: element, l: 1.5 })}
+            data-parallax="1.5"
           >
             <LE c={about} k='categoriesTitle' />
           </div>
           {about.fields.categories.map((category: any, index: number)=> <div key={category.sys.id} className='col col--3of12 col--tablet_landscape--4of12 col--tablet_portrait--6of12 col--phone--12of12'
-            // ref={element => this.parallax.push({ e: element, l: 1.5 })}
+            data-parallax="1.5"
           >
             <h3><LE c={category} k='title' /></h3>
             <p><LE c={category} k='description' /></p>
@@ -52,12 +52,12 @@ export default async function About() {
 
         <OnScroll className='grid grid--guttered'>
           <div className='col col--12of12'
-            // ref={element => this.parallax.push({ e: element, l: 1.5 })}
+            data-parallax="1.5"
           >
             <h6><LE c={about} k='teamTitle' /></h6>
           </div>
           <div className='col col--8of12 col--tablet_portrait--10of12 col--phone--12of12'
-            // ref={element => this.parallax.push({ e: element, l: 3 })}
+            data-parallax="3"
           ><p className='big'><LE c={about} k='teamBody' /></p></div>
 
           <div className='col col--12of12'></div>
@@ -92,17 +92,17 @@ export default async function About() {
 
         <OnScroll className='grid grid--tight_guttered'>
           <div className='col col--12of12'
-            // ref={element => this.parallax.push({ e: element, l: -1.5 })}
+            data-parallax="-1.5"
           >
             <h6><LE c={about} k='collaboratorsTitle' /></h6>
           </div>
           <div
-            // ref={element => this.parallax.push({ e: element, l: -3 })}
+            data-parallax="-3"
             className='col col--8of12 col--tablet_portrait--10of12 col--phone--12of12'><p className='big'><LE c={about} k='collaboratorsBody' /></p></div>
 
           <div className='col col--12of12'></div>
           {about.fields.collaborators && about.fields.collaborators.map((collaborator: { fields: any }) => <div key={collaborator.fields.name} className='col col--12of12'
-            // ref={element => this.parallax.push({ e: element, l: -0.5 })}
+            data-parallax="-0.5"
             >
             <hr />
             
@@ -124,17 +124,17 @@ export default async function About() {
 
         <OnScroll className='grid grid--tight_guttered'>
           <div className='col col--12of12'
-            // ref={element => this.parallax.push({ e: element, l: -1.5 })}
+            data-parallax="-1.5"
           >
             <h6><LE c={about} k='engagementsTitle' /></h6>
           </div>
           <div
-            // ref={element => this.parallax.push({ e: element, l: -3 })}
+            data-parallax="-3"
             className='col col--10of12 col--phone--12of12'><p className='big'><LE c={about} k='engagementsBody' /></p></div>
 
           <div className='col col--12of12'></div>
           {about.fields.engagements.map((engagement: { fields: any }, i: number) => <div key={i} className='col col--4of12 col--tablet_portrait--6of12 underline_links'
-            // ref={element => this.parallax.push({ e: element, l: -0.5 })}
+            data-parallax="-0.5"
           >
             <LRE c={engagement} k='body' />
           </div>)}

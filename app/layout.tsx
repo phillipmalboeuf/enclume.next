@@ -1,6 +1,7 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { Loading } from '@/components/loading'
+import { Parallax } from '@/components/parallax'
 
 import 'normalize.css'
 import 'flickity/css/flickity.css'
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Header locale={process.env.LOCALE} />
         {children}
         <Footer />
+        <Parallax />
       </body>
     </html>
   )
