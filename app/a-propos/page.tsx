@@ -3,6 +3,7 @@ import { LE, LPE, LRE } from '@/components/entry'
 import { Icon } from '@/components/icon'
 import { PageTransition } from '@/components/page_transition'
 import { ContentService } from '@/services/content'
+import { TypeTeamMemberFields } from '@/services/types'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -81,9 +82,9 @@ export default async function About() {
                 <div className='img_hover padded padded--tight teal_back'>
                   <h3 className='small_bottom hide_on_tablet_portrait'><LE c={member} k='name' /></h3>
                   <h3><LE c={member} k='description' /></h3>
-                  {member.fields.credentials && <div className='grid grid--tight_guttered hide_on_tablet_portrait'>{Object.entries(member.fields.credentials).map(([key, value])=> <div key={key} className='col col--6of12 col--phone--12of12' style={{ lineHeight: 1.33 }}>
+                  {member.fields.credentials && <div className='grid grid--tight_guttered hide_on_tablet_portrait'>{Object.entries(member.fields.credentials as TypeTeamMemberFields['credentials']).map(([key, value])=> <div key={key} className='col col--6of12 col--phone--12of12' style={{ lineHeight: 1.33 }}>
                     <strong>{key}</strong><br />
-                    {value}
+                    <span>{value as string}</span>
                   </div>)}</div>}
 
                   <div className='img_hover_hover padded padded--tight grid grid--bottom'>
@@ -101,7 +102,8 @@ export default async function About() {
           </div>)}
         </OnScroll>
 
-        {/* <div className='big_bottom' />
+        {about.fields.collaborators && about.fields.collaborators.length && <>
+        <div className='big_bottom' />
 
         <OnScroll className='grid grid--tight_guttered'>
           <div className='col col--12of12'
@@ -131,7 +133,8 @@ export default async function About() {
               </div>}
             </div>
           </div>)}
-        </OnScroll> */}
+        </OnScroll>
+        </>}
 
         <div className='big_bottom' />
 
