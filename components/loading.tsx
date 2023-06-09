@@ -7,7 +7,6 @@ import { ContentService } from '@/services/content'
 interface Props {
 }
 
-{/* @ts-expect-error Async Server Component */}
 export const Loading: FunctionComponent<Props> = async (props) => {
   const homepage = await ContentService.homepage()
   return <>
