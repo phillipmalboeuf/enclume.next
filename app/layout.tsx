@@ -2,6 +2,7 @@ import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { Loading } from '@/components/loading'
 import { Parallax } from '@/components/parallax'
+import Script from 'next/script'
 
 import 'normalize.css'
 import 'flickity/css/flickity.css'
@@ -23,6 +24,20 @@ export default function RootLayout({
         {children}
         <Footer />
         <Parallax />
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-07JJHETBP8"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-07JJHETBP8');
+          `}
+        </Script>
       </body>
     </html>
   )
