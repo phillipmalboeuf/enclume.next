@@ -13,7 +13,7 @@ export async function generateMetadata(
   params,
   searchParams
 ): Promise<Metadata> {
-  const project = await ContentService.project({ 'fields.url': params.id })
+  const project = await ContentService.project({ 'fields.url': params.params.id })
 
   return {
     title: project.fields.title,
