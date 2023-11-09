@@ -66,7 +66,7 @@ export default async function Projet({
         <div
           data-parallax="2"
           className='grid grid--thick_guttered grid--spaced_around grid--middle'>
-          {project.fields.gallery.map((photo: any, index: number)=> <OnScroll key={photo.fields.file.url} className={`col col--${project.fields.galleryGridSizes && project.fields.galleryGridSizes[index]}of12 col--tablet_portrait--12of12`}>
+          {project.fields.gallery?.map((photo: any, index: number)=> <OnScroll key={photo.fields.file.url} className={`col col--${project.fields.galleryGridSizes && project.fields.galleryGridSizes[index]}of12 col--tablet_portrait--12of12`}>
             <figure>
               <Picture src={photo.fields.file.url} />
               {photo.fields.description && <figcaption><small>{photo.fields.description}</small></figcaption>}
