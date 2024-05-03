@@ -25,7 +25,8 @@ export default function RootLayout({
         <Footer />
         <Parallax />
 
-        <Script
+        <Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="afterInteractive"  />
+        {/* <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-07JJHETBP8"
           strategy="afterInteractive"
         />
@@ -37,7 +38,7 @@ export default function RootLayout({
 
             gtag('config', 'G-07JJHETBP8');
           `}
-        </Script>
+        </Script> */}
       </body>
     </html>
   )
